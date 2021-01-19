@@ -138,7 +138,7 @@ let pourcentage = 100*[vote]/[votetotal]
 let embedvote = new Discord.MessageEmbed() 
 .setTitle("📊State📊") 
 .addField("1⃣" + V.choix1, pourcentage + "%("+ V.vote1 + ")") 
-.addField("2⃣" + V.choix2, V.pourcent2+ "%("+ V.vote1 + ")");
+.addField("2⃣" + V.choix2, V.pourcent2+ "%("+ V.vote2 + ")");
 
 message.edit(embedvote) 
 }
