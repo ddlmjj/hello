@@ -859,7 +859,7 @@ msg.react("2⃣").then(reaction2 => {
 
 reaction[msg.id] = {
 commandeI: "vote", 
-reaction: reatction1.id, 
+reaction: reaction1.id, 
 reaction2: reaction2.id, 
 choix1: args[0], 
 choix2: args[1], 
