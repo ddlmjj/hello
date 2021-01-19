@@ -128,7 +128,7 @@ rolecou["liste"] = []
        
        
        if(V.commandeI === "vote") {
-if(V.reaction === reactions.emoji) {
+if(V.reaction === reactions.id) {
 let votetotal = V.votetotal
 let vote = V.vote1
 votetotal += 1
@@ -854,18 +854,21 @@ const embedvote = new Discord.MessageEmbed()
 .addField("1⃣" + args[0], "                    |0% (0) ") 
 .addField("2⃣" + args[1], "                   |0% (0) ") ;
 message.channel.send(embedvote).then(msg => {
-msg.react("1⃣") 
-msg.react("2⃣") ;
+msg.react("1⃣").then(reaction1 => {
+msg.react("2⃣").then(reaction2 => {
+
 reaction[msg.id] = {
 commandeI: "vote", 
-reaction: "1⃣", 
-reaction2: "2⃣", 
+reaction: reatction1.id, 
+reaction2: reaction2.id, 
 choix1: args[0], 
 choix2: args[1], 
 pourcent: 0,
 votetotal: 0,
 vote1: 0,
 vote2: 0
+}
+}
 }
 });
 
