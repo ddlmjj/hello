@@ -864,9 +864,9 @@ reaction2: reaction2.id,
 choix1: args[0], 
 choix2: args[1], 
 pourcent: 0,
-votetotal: 0,
+votetotal: 1,
 vote1: 0,
-vote2: 0
+vote2: 1
 }
 }) 
 }) 
