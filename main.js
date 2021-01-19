@@ -129,12 +129,18 @@ rolecou["liste"] = []
        
        if(V.commandeI === "vote") {
 if(V.reaction === reactions.id) {
-let votetotal = V.votetotal
-let vote = V.vote1
-votetotal += 1
-vote += 1
+reaction[message.id].votetotal += 1
+reaction[message.id].vote1 += 1
+let votetotal = reaction[message.id].votetotal
+let vote = reaction[message.id].vote1
+
 let pourcentage = 100*[vote]/[votetotal]
-message.channel.send(pourcentage) 
+let embedvote = new Discord.MessageEmbed() 
+.setTitle("📊State📊") 
+.addField("1⃣" + V.choix1, pourcentage + "%("+ V.vote1 + ")") 
+.addField("2⃣" + V.choix2, V.pourcent2+ "%("+ V.vote1 + ")");
+
+message.edit(embedvote) 
 }
 }
         if(V.commandeI === "addroledef") {
@@ -863,7 +869,8 @@ reaction: reaction1.id,
 reaction2: reaction2.id, 
 choix1: args[0], 
 choix2: args[1], 
-pourcent: 0,
+pourcent1: 0,
+pourcent2: 0,
 votetotal: 1,
 vote1: 0,
 vote2: 1
