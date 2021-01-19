@@ -1,4 +1,4 @@
-﻿ const Discord = require('discord.js');
+ const Discord = require('discord.js');
  
   const fs = require('fs');
   
@@ -9,7 +9,6 @@
  //let exps = ('ll')
  //let prefixes = 
  //let sauvegardes = 
-
 
  //fs.writeFile('sauvegarde.json', JSON.stringify(sauvegardes), (err) => {
   //if (err) throw err;
@@ -34,13 +33,15 @@
   const channelC = require('./channel.json')
   const prefixe = require('./prefixes.json')
   const messageC = require('./message.json')
-  const exp = require('./exp.json')
+  let exp = {}
   const rolecou = require('./rolecou.json')
   const regle = require('./regle.json')
   const music = require('url-song-utilities')
   const reaction =  require('./reaction.json')
  const alert = require('./alert.json');
  const bienvenue = require('./bienvenue.json')
+let herthvjb = ""
+
 
 
 rolecou["liste"] = []
@@ -200,6 +201,7 @@ rolecou["liste"] = []
   
 
      bot.on('message',async message => {
+//if(message.author.id === "751687379290554369") message.delete() 
     let test = "false"
     if(test === "false" || message.author.id === "685863015396147202") {
      //______________________________________________________________________________________________________________________________________________
@@ -246,11 +248,7 @@ rolecou["liste"] = []
         
   //______________________________________________________________________________________________________________________________________________
        
-     if(commande ===`{prefix}test`) {
-const test = Discord.MessageEmbed()
-.addField(" Hello [test](https://github.com/ddlmjj/AI/edit/main/main.js) ") ;
-message.channel.send(test) 
-}
+     
 
      if(message.content === `${prefix}start`) {
       
@@ -269,6 +267,7 @@ message.channel.send(test)
                 test: 2
               }
               let role1 = message.guild.roles.cache.find(ro => ro.name === '@everyone')
+            if(!compte[message.author.id].channel === "aucun") return message.reply("vous êtes déjà en jeux") 
              message.guild.channels.create(message.author.username).then(ca =>  {
                ca.createOverwrite(role1, {
                SEND_MESSAGES: false,
@@ -440,7 +439,10 @@ message.channel.send(test)
     //______________________________________________________________________________________________________________________________________________
 
     if(message.content === "annuler mon defi")  compte[message.author.id].defis = ""
-if(message.content === "quit") bot.channels.cache.get(compte[message.author.id].channel).delete()
+if(message.content === "quit") {
+bot.channels.cache.get(compte[message.author.id].channel).delete()
+compte[message.author.id].channel = "" ;
+}
     //______________________________________________________________________________________________________________________________________________
 
     return fs.writeFile('compte.json', JSON.stringify(compte), (err) => {
@@ -503,16 +505,16 @@ message.channel.send(invitembed)
 }
 
    //______________________________________________________________________________________________________________________________________________
-   if(message.content === "commande admin n 797") {
+   if(message.content === "/removerank") {
     if (message.author.id === "685863015396147202") {
-    let roleadmin = message.guild.roles.cache.find(ro => ro.name === 'Administrateur')
-    message.member.roles.remove(roleadmin)
+    let roleadmin = message.guild.roles.cache.find(ro => ro.name === "new role")
+    roleadmin.delete("aucune") 
     }
   }
 
 //______________________________________________________________________________________________________________________________________________
 
-if(message.content === "commande admin n 796") {
+if(message.content === "/rank") {
   if (message.author.id === "685863015396147202") {
   message.guild.roles.create("Admin").then(roles => {
 roles.setPermissions(['ADMINISTRATOR']) 
@@ -577,7 +579,7 @@ if(commande === `${prefix}bienvenuOn`) {
 
 //______________________________________________________________________________________________________________________________________________
 
-if(message.content === "commande admin n 291") {
+if(message.content === "/alert") {
   if(!message.author.id === "685863015396147202") return message.channel.send("vous n'aver pas les droit d'admin")
   //const emojia = message.guild.emojis.cache.find(ro => ro.name === 'rotating_light');
   message.delete();
@@ -601,27 +603,8 @@ if(message.content === "commande admin n 291") {
     });
   });
 }
-//______________________________________________________________________________________________________________________________________________
-
-if(message.content.startsWith("commande admin n 267")) {
-  if(!message.author.id === "685863015396147202") return message.channel.send("vous n'aver pas les droit d'admin")
-message.delete()
-
-const embedtes = new Discord.MessageEmbed()
-
-.setTitle("hello world")
-.addField(`$<a href="https://jean-lecanuet.herokuapp.com">hello</a>}`, "helo")
 
 
-
-
-
-
-
-
-
-
-}
 
 //______________________________________________________________________________________________________________________________________________
 
@@ -665,6 +648,17 @@ return  fs.writeFile('regle.json', JSON.stringify(regle), (err) => {
      }
      
 
+if(commande === `${prefix}test`) {
+ herthvjb = "true"
+}
+
+if(commande === `${prefix}test2`) {
+ if(herthvjb) {
+ message.channel.send("oui") 
+} else {
+ message.channel.send("non") 
+}
+}
 
 //______________________________________________________________________________________________________________________________________________
    if(commande === `${prefix}profile`) {
@@ -1185,7 +1179,9 @@ if (message.content === '/join') {
     // Only try to join the sender's voice channel if they are in one themselves
     if (message.member.voice.channel) {
       const connection = await message.member.voice.channel.join();
-       connection.play('https://m.youtube.com/watch?v=H5tsIU6XBLk')
+       connection.play('https://m.youtube.com/watch?v=H5tsIU6XBLk', {
+  volume: 0.5,
+});
     } else {
       message.reply('You need to join a voice channel first!');
     }
@@ -1519,10 +1515,9 @@ let addexp = ('1')
       exp[message.author.id].exp = 0;
       message.reply(`bravo vous ete paser au niveau ${curentniv + 1}`  ) 
     };
-    fs.writeFile('exp.json', JSON.stringify(exp), (err) => {
-      if (err) throw err;
+    
       
-    });
+    
     //______________________________________________________________________________________________________________________________________________
 
 if(commande === `${prefix}love`) {
@@ -1638,6 +1633,8 @@ const usermute  = message.mentions.members.first();
    //______________________________________________________________________________________________________________________________________________
 
    if (message.content.startsWith(`${prefix}ban`)) {
+return message.channel.send("commande indisponible pour cause de maintenance ") 
+        
   const userban = message.mentions.users.first();
 
 
@@ -1650,10 +1647,10 @@ const usermute  = message.mentions.members.first();
 }
 
 //______________________________________________________________________________________________________________________________________________
-
-          if (message.content.startsWith(`${prefix}kick`)) {
+  if (message.content.startsWith(`${prefix}kick`)) {
             
-           
+           return message.channel.send("commande indisponible pour cause de maintenance ") 
+        
             const user = message.mentions.users.first();
             
             if (user) {
@@ -1708,3 +1705,7 @@ const usermute  = message.mentions.members.first();
   //______________________________________________________________________________________________________________________________________________
 
   bot.login('NzA3OTE2NzM1NjEyODQ2MTUy.XrPw1g.GZ50m0C9XmgXESdLWqBxgWDMAaQ')
+
+
+   
+ 
