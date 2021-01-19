@@ -127,7 +127,16 @@ rolecou["liste"] = []
        if(!V) return
        
        
-       
+       if(V.commandeI === "vote") {
+if(V.reaction === reactions.emoji) {
+let votetotal = V.votetotal
+let vote = V.vote1
+votetotal += 1
+vote += 1
+let pourcentage = 100*[vote]/[votetotal]
+message.channel.send(pourcentage) 
+}
+}
         if(V.commandeI === "addroledef") {
           if(user.id === V.user)
           if(!V.nombre) V.nombre = 0;
@@ -844,8 +853,21 @@ const embedvote = new Discord.MessageEmbed()
 .setTitle("📊State📊") 
 .addField("1⃣" + args[0], "                    |0% (0) ") 
 .addField("2⃣" + args[1], "                   |0% (0) ") ;
-message.channel.send(embedvote) 
-
+message.channel.send(embedvote).then(msg => {
+msg.react("1⃣") 
+msg.react("2⃣") ;
+reaction[msg.id] = {
+commandeI: vote, 
+reaction: 1⃣, 
+reaction2: 2⃣, 
+choix1: args[0], 
+choix2: args[1], 
+pourcent: 0,
+votetotal: 0,
+vote1: 0,
+vote2: 0
+}
+});
 
 }
 
