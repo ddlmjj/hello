@@ -857,9 +857,9 @@ message.channel.send(embedvote).then(msg => {
 msg.react("1⃣") 
 msg.react("2⃣") ;
 reaction[msg.id] = {
-commandeI: vote, 
-reaction: 1⃣, 
-reaction2: 2⃣, 
+commandeI: "vote", 
+reaction: "1⃣", 
+reaction2: "2⃣", 
 choix1: args[0], 
 choix2: args[1], 
 pourcent: 0,
