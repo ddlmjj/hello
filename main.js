@@ -837,7 +837,7 @@ if(commande === `${prefix}serveur`) {
  }
 //______________________________________________________________________________________________________________________________________________
 
-if(commande === `${prefix}vote)`) {
+if(commande === '/vote)') {
 if(!args[0]) return message.channel.send("preciser un vote")
  if(!args[1]) return message.channel.send("preciser un vote") 
 const embedvote = new Discord.MessageEmbed()
