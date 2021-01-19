@@ -24,7 +24,7 @@
 //})
 
   const yt = require('ytdl-core')
-  const quick = require('quick-db') 
+  
   const ms = require('ms')
   const monnai = require('./message.json')
   const sauvegarde2 = require('./sauvegarde2.json')
