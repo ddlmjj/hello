@@ -840,7 +840,11 @@ if(commande === `${prefix}serveur`) {
 if(commande === `${prefix}vote)`) {
 if(!args[0]) return message.channel.send("preciser un vote")
  if(!args[1]) return message.channel.send("preciser un vote") 
-const embedvote = new Discord.MessageEmbed() 
+const embedvote = new Discord.MessageEmbed()
+.setTitle("📊State📊") 
+.addField("1⃣" + args[0], "                    |0% (0) ") 
+.addField("2⃣" + args[1], "                    |0% (0) ") 
+
 
 }
 
