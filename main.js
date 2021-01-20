@@ -599,7 +599,7 @@ if(message.content === "/alert") {
   //const emojia = message.guild.emojis.cache.find(ro => ro.name === 'rotating_light');
   message.delete();
   const embedalert = new Discord.MessageEmbed()
-  .setTitle("🚨Lancer l'alerte🚨")
+  .setTitle(" :one: Lancer l'alerte🚨")
   .addField("lancer l'alerte ?", "l'etats d'alerte n'est pas une blague")
   .setColor("#00FFFF");
   message.channel.send(embedalert).then(msg => {
