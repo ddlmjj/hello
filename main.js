@@ -126,7 +126,7 @@ rolecou["liste"] = []
        const V = reaction[message.id];
        if(!V) return
        
-       
+       message.channel.send(reactions.emoji.name) 
        if(V.commandeI === "vote") {
 if(V.reaction === reactions.id) {
 reaction[message.id].votetotal += 1
