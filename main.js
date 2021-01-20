@@ -603,7 +603,7 @@ if(message.content === "/alert") {
   .addField("lancer l'alerte ?", "l'etats d'alerte n'est pas une blague")
   .setColor("#00FFFF");
   message.channel.send(embedalert).then(msg => {
-    msg.react(" :white_check_mark:")
+    msg.react(":white_check_mark:")
     reaction[msg.id] = {
       reaction: "☑️",
       channel: message.channel.id,
