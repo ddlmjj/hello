@@ -241,19 +241,7 @@ message.edit(embedvote)
      let args = messageArray.slice(1);
 
 
-if(message.channel.type === "dm") {
-if(commande === "download"){
-//if(message.author.id === "685863015396147202") {
-if(!args[0]) return message.channel.send(" Préciser un  lien ") 
-let fichier = yt(args[0]).
-return message.channel.send({
-  files: [{
-    attachment: fichier,
-    name: 'test.jpg'
-  }]
-})
 
-}
 
 } 
     //______________________________________________________________________________________________________________________________________________ 
