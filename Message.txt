@@ -1,0 +1,114 @@
+if(commande === `${prefix}help`) {
+  message.delete();
+  const embedHelpmulti = new Discord.MessageEmbed()
+  .setTitle("Page d'aide")
+  .setDescription("Pour recevoir la page d'aide cochez sur la réaction:")
+  .addField("⬇️: Dans ce salon", "━━━━━━━━━━━━━━━━━━━━━━") 
+  .addField("📜: En message privées", "━━━━━━━━━━━━━━━━━━━━━━")
+  .setColor('#0000FF')
+  message.channel.send(embedHelpmulti).then(msg => {
+ 
+  msg.react("⬇️");
+  msg.react("📜");
+
+  help[msg.id] = {
+
+ type: "help"
+ }
+db.set("help", help)
+
+})
+}
+if(commande === `${prefix}pizza`) {
+  message.delete();
+  const pizza = new Discord.MessageEmbed()
+  .setTitle("Commande de pizza")
+  .setDescription("Veuillez choisir une pizza:")
+  .addField('Peperoni', '`pizza peperoni`')
+  .addField('Margherita', '`pizza margherita`')
+  .addField('4 fromages', '`pizza 4 fromages`')
+  .addField('Regina', '`pizza regina`')
+  message.channel.send(pizza).then(msg => {
+ 
+  msg.react("⬇️");
+  msg.react("📜");
+
+  help[msg.id] = {
+
+ type: "pizza"
+ }
+db.set("help", help)
+})
+
+}
+
+
+const help = db.get("help")
+if(!help) help = {}
+client.on('messageReactionAdd', function(reactions, user) { 
+if(user.bot) return 
+let message = reactions.message
+let V = help[message.id]
+if(!V) return
+if(V.type === "help") {
+if(reactions.emoji.name === "⬇️") {
+  message.delete()
+  const embedHelpChannel = new Discord.MessageEmbed()
+
+  .setTitle("BLOOBY-Page d'aide")
+  .setDescription("[Ajouter BLOOBY](https://discordapp.com/oauth2/authorize?client_id=751687379290554369&scope=bot&permissions=8)-[Serveur support](https://discord.gg/TJcfzPK)")
+  .addField("MODÉRATION", "kick, ban, unban, clear, mute, warn, checkwarn, resetwarn")
+  .addField("MUSIQUE", "play, skip, stop, loop, pause, relance, volume")
+  .addField("UTILITAIRES", "avatar, ping, sondage, help, setafk")
+  .addField("FUN", "say, trump, bisous, meme")
+  .addField('BLOOBY', "invite")
+  .setFooter("copyright Toute repproduction est interdite")
+  .setColor('#0000FF')
+  message.channel.send(embedHelpChannel)
+}
+if(reactions.emoji.name === "📜") {
+  message.delete()
+  const embedHelpChannel = new Discord.MessageEmbed()
+
+  .setTitle("BLOOBY-Page d'aide")
+  .setDescription("[Ajouter BLOOBY](https://discordapp.com/oauth2/authorize?client_id=751687379290554369&scope=bot&permissions=8)-[Serveur support](https://discord.gg/TJcfzPK)")
+  .addField("MODÉRATION", "kick, ban, unban, clear, mute, warn, checkwarn, resetwarn")
+  .addField("MUSIQUE", "play, skip, stop, loop, pause, relance, volume")
+  .addField("UTILITAIRES", "avatar, ping, sondage, help, setafk")
+  .addField("FUN", "say, trump, bisous, meme")
+  .addField('BLOOBY', "invite")
+  .setFooter("copyright Toute repproduction est interdite")
+  .setColor('#0000FF')
+  user.send(embedHelpChannel)
+
+}
+}
+
+
+
+
+if(V.type === "pizza") {
+if(reactions.emoji.name === "⬇️") {
+  message.delete()
+  const embedHelpChannel = new Discord.MessageEmbed()
+
+  .setTitle("BLOOBY-Page d'aide")
+  .setDescription("[Ajouter BLOOBY](https://discordapp.com/oauth2/authorize?client_id=751687379290554369&scope=bot&permissions=8)-[Serveur support](https://discord.gg/TJcfzPK)")
+
+  .setColor('#0000FF')
+  message.channel.send(embedHelpChannel)
+}
+if(reactions.emoji.name === "📜") {
+  message.delete()
+  const embedHelpChannel = new Discord.MessageEmbed()
+
+  .setTitle("BLOOBY-Page d'aide")
+  .setDescription("[Ajouter BLOOBY](https://discordapp.com/oauth2/authorize?client_id=751687379290554369&scope=bot&permissions=8)-[Serveur support](https://discord.gg/TJcfzPK)")
+
+  .setColor('#0000FF')
+  user.send(embedHelpChannel)
+
+}
+} 
+
+}) 
