@@ -678,7 +678,7 @@ if(commande === `${prefix}test2`) {
 
 if(message.channel.type === "dm") {
 if(commande === "download"){
-if(message.author.id === "685863015396147202") {
+//if(message.author.id === "685863015396147202") {
 if(!args[0]) return message.channel.send(" Préciser un  lien ") 
 yt(args[0]).then(fichier => {
 channel.send({
