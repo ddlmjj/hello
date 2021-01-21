@@ -233,6 +233,14 @@ message.edit(embedvote)
       if (err) throw err;
       });
 
+
+let prefix = (prefixe[message.guild.id].prefixe);
+     let messageArray = message.content.split(' ');
+     let commande2 = messageArray[0,1];
+     let commande = messageArray[0];
+     let args = messageArray.slice(1);
+
+
 if(message.channel.type === "dm") {
 if(commande === "download"){
 //if(message.author.id === "685863015396147202") {
@@ -257,11 +265,7 @@ return message.channel.send({
      
     //______________________________________________________________________________________________________________________________________________
 
-     let prefix = (prefixe[message.guild.id].prefixe);
-     let messageArray = message.content.split(' ');
-     let commande2 = messageArray[0,1];
-     let commande = messageArray[0];
-     let args = messageArray.slice(1);
+     
      message.member.createDM().then(async dm => {
 
      
