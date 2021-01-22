@@ -137,6 +137,7 @@ let vote = reaction[message.id].vote1
 let pourcentage = 100*[vote]/[votetotal]
 let embedvote = new Discord.MessageEmbed() 
 .setTitle("📊State📊") 
+.setColor("#00FFFF") 
 .addField("1⃣" + V.choix1, pourcentage + "%("+ V.vote1 + ")") 
 .addField("2⃣" + V.choix2, V.pourcent2+ "%("+ V.vote2 + ")");
 
@@ -866,6 +867,7 @@ if(!args[0]) return message.channel.send("preciser un vote")
  if(!args[1]) return message.channel.send("preciser un vote") 
 const embedvote = new Discord.MessageEmbed()
 .setTitle("📊State📊") 
+.setColor("#00FFFF") 
 .addField("1⃣" + args[0], "                    |0% (0) ") 
 .addField("2⃣" + args[1], "                   |0% (0) ") ;
 message.channel.send(embedvote).then(msg => {
