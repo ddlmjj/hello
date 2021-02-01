@@ -1760,7 +1760,8 @@ return message.channel.send("commande indisponible pour cause de maintenance ")
 
   //______________________________________________________________________________________________________________________________________________
 
-  bot.login('NzA3OTE2NzM1NjEyODQ2MTUy.XrPw1g.GZ50m0C9XmgXESdLWqBxgWDMAaQ')
+  bot.login('NzA3OTE2NzM1NjEyODQ2MTUy.XrPw1g.GZ50m0XmgXESdLWqBxgWDMAa')
+  //ceci n'est pas mon vrai token de bot car je ne peux vous le montrer
 
 
    
