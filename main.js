@@ -1717,4 +1717,4 @@ const usermute  = message.mentions.members.first();
 
 
   //_________________________________________________________________________________________________________________________
-bot.login('NzA3OTE2NzM1NjEyODQ2MTUy.XrPw1g.a0Zd3Ooiz-B33eeEsUPfddg2Vbg')
+bot.login('NzA3OTE2NzM1NjEyODQ2MTUy.XrPw1g.jPt0T6uPfoKJGT_eNfKxXk_WVwQ') 
