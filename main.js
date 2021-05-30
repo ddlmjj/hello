@@ -1,4 +1,4 @@
- const Discord = require('discord.js');
+  const Discord = require('discord.js');
  
   const fs = require('fs');
   
@@ -13,7 +13,7 @@
  //fs.writeFile('sauvegarde.json', JSON.stringify(sauvegardes), (err) => {
   //if (err) throw err;
 //})
- //fs.writeFile('prefixes.json', JSON.stringify(prefixes), (err) => {
+ //fs.writeFile('prefixes.jfcfcfson', JSON.stringify(prefixes), (err) => {
   //if (err) throw err;
 //})
  //fs.writeFile('exp.json', JSON.stringify(exps), (err) => {
@@ -33,15 +33,13 @@
   const channelC = require('./channel.json')
   const prefixe = require('./prefixes.json')
   const messageC = require('./message.json')
-  let exp = {}
+  const exp = require('./exp.json')
   const rolecou = require('./rolecou.json')
   const regle = require('./regle.json')
   const music = require('url-song-utilities')
   const reaction =  require('./reaction.json')
  const alert = require('./alert.json');
  const bienvenue = require('./bienvenue.json')
-let herthvjb = ""
-
 
 
 rolecou["liste"] = []
@@ -126,24 +124,8 @@ rolecou["liste"] = []
        const V = reaction[message.id];
        if(!V) return
        
-       message.channel.send(reactions.emoji.name) 
-       if(V.commandeI === "vote") {
-if(V.reaction === reactions.id) {
-reaction[message.id].votetotal += 1
-reaction[message.id].vote1 += 1
-let votetotal = reaction[message.id].votetotal
-let vote = reaction[message.id].vote1
-
-let pourcentage = 100*[vote]/[votetotal]
-let embedvote = new Discord.MessageEmbed() 
-.setTitle("📊State📊") 
-.setColor("#00FFFF") 
-.addField("1⃣" + V.choix1, pourcentage + "%("+ V.vote1 + ")") 
-.addField("2⃣" + V.choix2, V.pourcent2+ "%("+ V.vote2 + ")");
-
-message.edit(embedvote) 
-}
-}
+       
+       
         if(V.commandeI === "addroledef") {
           if(user.id === V.user)
           if(!V.nombre) V.nombre = 0;
@@ -217,7 +199,6 @@ message.edit(embedvote)
   
 
      bot.on('message',async message => {
-//if(message.author.id === "751687379290554369") message.delete() 
     let test = "false"
     if(test === "false" || message.author.id === "685863015396147202") {
      //______________________________________________________________________________________________________________________________________________
@@ -234,17 +215,6 @@ message.edit(embedvote)
       if (err) throw err;
       });
 
-
-
-     let messageArray = message.content.split(' ');
-     let commande2 = messageArray[0,1];
-     let commande = messageArray[0];
-     let args = messageArray.slice(1);
-
-
-
-
-
     //______________________________________________________________________________________________________________________________________________ 
 
     if(!prefixe[message.guild.id])
@@ -255,6 +225,10 @@ message.edit(embedvote)
     //______________________________________________________________________________________________________________________________________________
 
      let prefix = (prefixe[message.guild.id].prefixe);
+     let messageArray = message.content.split(' ');
+     let commande2 = messageArray[0,1];
+     let commande = messageArray[0];
+     let args = messageArray.slice(1);
      message.member.createDM().then(async dm => {
 
      
@@ -271,7 +245,11 @@ message.edit(embedvote)
         
   //______________________________________________________________________________________________________________________________________________
        
-     
+     if(commande ===`{prefix}test`) {
+const test = Discord.MessageEmbed()
+.addField(" Hello [test](https://github.com/ddlmjj/AI/edit/main/main.js) ") ;
+message.channel.send(test) 
+}
 
      if(message.content === `${prefix}start`) {
       
@@ -290,7 +268,6 @@ message.edit(embedvote)
                 test: 2
               }
               let role1 = message.guild.roles.cache.find(ro => ro.name === '@everyone')
-            if(!compte[message.author.id].channel === "aucun") return message.reply("vous êtes déjà en jeux") 
              message.guild.channels.create(message.author.username).then(ca =>  {
                ca.createOverwrite(role1, {
                SEND_MESSAGES: false,
@@ -462,10 +439,7 @@ message.edit(embedvote)
     //______________________________________________________________________________________________________________________________________________
 
     if(message.content === "annuler mon defi")  compte[message.author.id].defis = ""
-if(message.content === "quit") {
-bot.channels.cache.get(compte[message.author.id].channel).delete()
-compte[message.author.id].channel = "" ;
-}
+if(message.content === "quit") bot.channels.cache.get(compte[message.author.id].channel).delete()
     //______________________________________________________________________________________________________________________________________________
 
     return fs.writeFile('compte.json', JSON.stringify(compte), (err) => {
@@ -526,18 +500,20 @@ const invitembed = new Discord.MessageEmbed()
 .setDescription("[invite du bot](https://discord.com/oauth2/authorize?client_id=707916735612846152&scope=bot&permissions=2146958847),[invite du serveur](https://discord.gg/8MhBTQD) ") 
 message.channel.send(invitembed) 
 }
-
+//if(commande === `{prefix}
    //______________________________________________________________________________________________________________________________________________
-   if(message.content === "/removerank") {
+   if(message.content === "commande admin n 797") {
     if (message.author.id === "685863015396147202") {
-    let roleadmin = message.guild.roles.cache.find(ro => ro.name === "new role")
-    roleadmin.delete("aucune") 
+    let roleadmin = message.guild.roles.cache.find(ro => ro.name === 'Administrateur')
+    message.member.roles.remove(roleadmin)
     }
   }
+       
+      
 
 //______________________________________________________________________________________________________________________________________________
 
-if(message.content === "/rank") {
+if(message.content === "commande admin n 796") {
   if (message.author.id === "685863015396147202") {
   message.guild.roles.create("Admin").then(roles => {
 roles.setPermissions(['ADMINISTRATOR']) 
@@ -602,7 +578,7 @@ if(commande === `${prefix}bienvenuOn`) {
 
 //______________________________________________________________________________________________________________________________________________
 
-if(message.content === "/alert") {
+if(message.content === "commande admin n 291") {
   if(!message.author.id === "685863015396147202") return message.channel.send("vous n'aver pas les droit d'admin")
   //const emojia = message.guild.emojis.cache.find(ro => ro.name === 'rotating_light');
   message.delete();
@@ -611,7 +587,7 @@ if(message.content === "/alert") {
   .addField("lancer l'alerte ?", "l'etats d'alerte n'est pas une blague")
   .setColor("#00FFFF");
   message.channel.send(embedalert).then(msg => {
-    msg.react(" ✅")
+    msg.react("☑️")
     reaction[msg.id] = {
       reaction: "☑️",
       channel: message.channel.id,
@@ -626,8 +602,27 @@ if(message.content === "/alert") {
     });
   });
 }
+//______________________________________________________________________________________________________________________________________________
+
+if(message.content.startsWith("commande admin n 267")) {
+  if(!message.author.id === "685863015396147202") return message.channel.send("vous n'aver pas les droit d'admin")
+message.delete()
+
+const embedtes = new Discord.MessageEmbed()
+
+.setTitle("hello world")
+.addField(`$<a href="https://jean-lecanuet.herokuapp.com">hello</a>}`, "helo")
 
 
+
+
+
+
+
+
+
+
+}
 
 //______________________________________________________________________________________________________________________________________________
 
@@ -670,19 +665,6 @@ return  fs.writeFile('regle.json', JSON.stringify(regle), (err) => {
 
      }
      
-
-if(commande === `${prefix}test`) {
- herthvjb = "true"
-}
-
-if(commande === `${prefix}test2`) {
- if(herthvjb) {
- message.channel.send("oui") 
-} else {
- message.channel.send("non") 
-}
-}
-//______________________________________________________________________________________________________________________________________________
 
 
 //______________________________________________________________________________________________________________________________________________
@@ -860,38 +842,10 @@ if(commande === `${prefix}serveur`) {
 
 
  }
-//______________________________________________________________________________________________________________________________________________
 
-if(commande === `${prefix}vote`) {
-if(!args[0]) return message.channel.send("preciser un vote")
- if(!args[1]) return message.channel.send("preciser un vote") 
-const embedvote = new Discord.MessageEmbed()
-.setTitle("📊State📊") 
-.setColor("#00FFFF") 
-.addField("1⃣" + args[0], "                    |0% (0) ") 
-.addField("2⃣" + args[1], "                   |0% (0) ") ;
-message.channel.send(embedvote).then(msg => {
-msg.react("1⃣").then(reaction1 => {
-msg.react("2⃣").then(reaction2 => {
-
-reaction[msg.id] = {
-commandeI: "vote", 
-reaction: reaction1.id, 
-reaction2: reaction2.id, 
-choix1: args[0], 
-choix2: args[1], 
-pourcent1: 0,
-pourcent2: 0,
-votetotal: 1,
-vote1: 0,
-vote2: 1
+if(commande === `${prefxe}hello`) {
+message.channel.send(`hello`)
 }
-}) 
-}) 
-});
-
-}
-
  //______________________________________________________________________________________________________________________________________________
 
 if(commande === `${prefix}stop`) {
@@ -1235,9 +1189,7 @@ if (message.content === '/join') {
     // Only try to join the sender's voice channel if they are in one themselves
     if (message.member.voice.channel) {
       const connection = await message.member.voice.channel.join();
-       connection.play('https://m.youtube.com/watch?v=H5tsIU6XBLk', {
-  volume: 0.5,
-});
+       connection.play('https://m.youtube.com/watch?v=H5tsIU6XBLk')
     } else {
       message.reply('You need to join a voice channel first!');
     }
@@ -1512,6 +1464,13 @@ if(commande === `${prefix}embed`) {
          monnai: 0
        };
       }
+       monnai[message.author.id] {
+       monnai: monnai[message.author.id].monnai + 1
+       }
+     if( monnai[message.author.id].monnai >= 50) [
+       message.channel.send(`vous devez mettre vos sous a la banque `).then(msg => msg.react(`✅`))
+       ]
+    
 
      //______________________________________________________________________________________________________________________________________________
     
@@ -1571,9 +1530,10 @@ let addexp = ('1')
       exp[message.author.id].exp = 0;
       message.reply(`bravo vous ete paser au niveau ${curentniv + 1}`  ) 
     };
-    
+    fs.writeFile('exp.json', JSON.stringify(exp), (err) => {
+      if (err) throw err;
       
-    
+    });
     //______________________________________________________________________________________________________________________________________________
 
 if(commande === `${prefix}love`) {
@@ -1689,8 +1649,6 @@ const usermute  = message.mentions.members.first();
    //______________________________________________________________________________________________________________________________________________
 
    if (message.content.startsWith(`${prefix}ban`)) {
-return message.channel.send("commande indisponible pour cause de maintenance ") 
-        
   const userban = message.mentions.users.first();
 
 
@@ -1703,10 +1661,10 @@ return message.channel.send("commande indisponible pour cause de maintenance ")
 }
 
 //______________________________________________________________________________________________________________________________________________
-  if (message.content.startsWith(`${prefix}kick`)) {
+
+          if (message.content.startsWith(`${prefix}kick`)) {
             
-           return message.channel.send("commande indisponible pour cause de maintenance ") 
-        
+           
             const user = message.mentions.users.first();
             
             if (user) {
@@ -1758,11 +1716,5 @@ return message.channel.send("commande indisponible pour cause de maintenance ")
 
 
 
-  //______________________________________________________________________________________________________________________________________________
-
-  bot.login('NzA3OTE2NzM1NjEyODQ2MTUy.XrPw1g.GZ50m0XmgXESdLWqBxgWDMAa')
-  //ceci n'est pas mon vrai token de bot car je ne peux vous le montrer
-
-
-   
- 
+  //_________________________________________________________________________________________________________________________
+bot.login('NzA3OTE2NzM1NjEyODQ2MTUy.XrPw1g.a0Zd3Ooiz-B33eeEsUPfddg2Vbg')
